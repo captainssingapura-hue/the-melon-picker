@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+        <artifactId>the-melon-picker</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>melon-picker-core</artifactId>
+    <description>
+        The model as data: units by their Maven coordinates, Line-Date versions (BREAK.YYYYMMDD.N), releases, the
+        catalogue they make, the resolver (highest within a line wins, to a fixpoint), the catalogue rules and gates,
+        advisories, floors and policy. Pure: no I/O. Java and jOntology core, nothing else.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.captainssingapura-hue.lang.ontology</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

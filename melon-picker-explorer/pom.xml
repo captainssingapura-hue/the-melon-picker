@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+        <artifactId>the-melon-picker</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>melon-picker-explorer</artifactId>
+    <description>
+        A catalogue in 3D, drawn by homing-graph-view: releases in layers by dependency depth, what a release
+        resolves to lit up, and its details, advisories and launch beside it.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+            <artifactId>melon-picker-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.captainssingapura-hue.homing.graphview</groupId>
+            <artifactId>homing-graph-view-viewer</artifactId>
+        </dependency>
+    </dependencies>
+</project>
