@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+    <artifactId>the-melon-picker</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <description>
+        Melon Picker, a Line-Date version manager: it reads an estate's releases from its Maven repositories, checks
+        them, resolves each application to the exact jars it runs with, and installs and launches them. Its features
+        and its work are kept in homing-graph-view-studio, which nothing here depends on.
+    </description>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <modules>
+        <!-- The model as data: units, Line-Date versions, releases, the catalogue, the resolver, the checker,
+             advisories, floors and policy. No I/O. Java and jOntology core, nothing else. -->
+        <module>melon-picker-core</module>
+        <!-- The file formats: the release descriptor, the estate manifest, the catalogue snapshot, the dependency
+             spec and the policy. -->
+        <module>melon-picker-json</module>
+        <!-- Reading Maven-layout repositories, a directory or over HTTP: versions, descriptors and jars. -->
+        <module>melon-picker-maven</module>
+        <!-- Installing and launching from a dependency spec: the content-addressed store, its checks, cleanup. -->
+        <module>melon-picker-runtime</module>
+        <!-- The command line over all of it: check, resolve, explain, spec, install, launch, gc. -->
+        <module>melon-picker-cli</module>
+        <!-- An estate declared in Java types, as launcher-demo's reference estate is, turned into a catalogue: the
+             main test fixture. -->
+        <module>melon-picker-testkit</module>
+        <!-- A catalogue in 3D, drawn by homing-graph-view. -->
+        <module>melon-picker-explorer</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.release>25</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jontology.version>0.1.0</jontology.version>
+        <junit.version>5.11.3</junit.version>
+        <!-- Drawn by the explorer: mvn install in homing-graph-view first. -->
+        <graphview.version>0.1.0-SNAPSHOT</graphview.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+                <artifactId>melon-picker-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+                <artifactId>melon-picker-json</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+                <artifactId>melon-picker-maven</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.melonpicker</groupId>
+                <artifactId>melon-picker-runtime</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.lang.ontology</groupId>
+                <artifactId>core</artifactId>
+                <version>${jontology.version}</version>
+            </dependency>
+            <!-- jOntology's enforcer, for the tests: each type keeps the contract it declares. -->
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.lang.ontology</groupId>
+                <artifactId>enforcer</artifactId>
+                <version>${jontology.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.lang.ontology</groupId>
+                <artifactId>enforcing-utils</artifactId>
+                <version>${jontology.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.captainssingapura-hue.homing.graphview</groupId>
+                <artifactId>homing-graph-view-viewer</artifactId>
+                <version>${graphview.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- Every module ships its sources: the studio's quality checks read them beside the jar. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
